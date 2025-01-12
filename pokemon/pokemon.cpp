@@ -130,6 +130,24 @@ public:
     }
 };
 
+class CartaTipoPedra : public Pokemon {
+private:
+    const string tipo = "Pedra";
+    const string debilidadTipo = "Aigua";  // Debilidad contra Agua, por ejemplo
+    string habilidad;
+
+public:
+    CartaTipoPedra(int hp, int atk, int def, const string& nombre, const string& habilidad)
+        : Pokemon(hp, atk, def, nombre), habilidad(habilidad) {}
+
+    void mostrarInfo() const override {
+        cout << "[Carta de Tipus " << tipo << "]" << endl;
+        Pokemon::mostrarInfo();
+        cout << "Tipus: " << tipo << "\n";
+        cout << "Debil contra: " << debilidadTipo << " (+" << getDebilidad() << " dany extra)\n";
+        cout << "Habilitat: " << habilidad << "\n";
+    }
+};
 
 // Definició de la Linked List
 class Baraja {
@@ -180,6 +198,7 @@ int main() {
     CartaTipoAgua* cartaAgua = new CartaTipoAgua(90, 40, 40, "Blastoise", "Hidrobomba");
     CartaTipoPlanta* cartaPlanta = new CartaTipoPlanta(110, 30, 50, "Venusaur", "Energibola");
     CartaTipoElectric* cartaElectric = new CartaTipoElectric(70, 60, 20, "Pikachu", "Bola Voltio");
+    CartaTipoPedra* cartaPiedra = new CartaTipoPedra(140, 50, 70, "Onix", "Roca Afilada");
 
     // Crear la baralla i afegir les cartes
     Baraja baraja;
@@ -187,6 +206,7 @@ int main() {
     baraja.afegirCarta(cartaAgua);
     baraja.afegirCarta(cartaPlanta);
     baraja.afegirCarta(cartaElectric);
+    baraja.afegirCarta(cartaPiedra);
 
     // Mostrar la baralla
     baraja.mostrarBaraja();
